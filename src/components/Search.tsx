@@ -11,7 +11,7 @@ interface SearchProps {
 const OMDB_API_KEY = '8e04d99'
 
 const handleSearchTitle = async (text: string) => {
-  const response = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${text}&type=movie`)
+  const response = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${text}&type=movie`)
   return response.data as SearchResponse
 }
 
