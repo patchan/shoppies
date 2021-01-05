@@ -1,9 +1,8 @@
 import * as React from "react"
-import { Badge, Box, Divider, Flex, Heading, IconButton, Image, Link, Select, Spacer, Stack } from '@chakra-ui/react'
+import { Badge, Box, Divider, Flex, Heading, Image, Link, Select, Spacer, Stack } from '@chakra-ui/react'
 import { Movie } from '../types/SearchResult';
 import NominateButton from './NominateButton';
 import { orderBy } from 'lodash';
-import { FiInfo } from 'react-icons/fi';
 
 interface ResultsListProps {
   results: Movie[];
