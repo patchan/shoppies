@@ -1,9 +1,9 @@
 import * as React from "react"
-import { Badge, Box, Flex, Heading, Image, Select, Spacer, Stack } from '@chakra-ui/react'
+import { Badge, Box, Divider, Flex, Heading, IconButton, Image, Link, Select, Spacer, Stack } from '@chakra-ui/react'
 import { Movie } from '../types/SearchResult';
 import NominateButton from './NominateButton';
-import RemoveButton from './RemoveButton';
 import { orderBy } from 'lodash';
+import { FiInfo } from 'react-icons/fi';
 
 interface ResultsListProps {
   results: Movie[];
@@ -21,14 +21,10 @@ const isNominated = (m: Movie, nominations: Movie[]) => {
 }
 
 const renderNominationButton = (m: Movie, nominations: Movie[], updateNominations: (m: Movie, action: 'add'|'remove') => void) => {
-  if (!isNominated(m, nominations)) {
-    if (nominations.length === 5) {
-      return <NominateButton movie={m} setNomination={updateNominations} isDisabled />
-    }
-    return <NominateButton movie={m} setNomination={updateNominations} />
-  } else {
-    return <RemoveButton movie={m} setNomination={updateNominations} />
+  if (isNominated(m, nominations) || nominations.length === 5) {
+    return <NominateButton movie={m} setNomination={updateNominations} isDisabled />
   }
+  return <NominateButton movie={m} setNomination={updateNominations} />
 }
 
 const ResultList: React.FC<ResultsListProps> = ({ results, updateNominations, nominations }) => {
@@ -61,31 +57,35 @@ const ResultList: React.FC<ResultsListProps> = ({ results, updateNominations, no
       </Box>
       {orderBy(results, sortBy, sortDirection).map((m: Movie) => {
         return (
-          <Flex
-            key={m.imdbID}
-            direction='row'
-            alignItems='center'
-            borderRadius={8}
-            boxShadow='0px 1px 2px rgb(221 221 229 / 0.9),0px 2px 4px rgb(221 221 229 / 0.9),0px 4px 8px rgb(221 221 229 / 0.9),0px 8px 16px rgb(221 221 229 / 0.5)'
-            my={2}
-            background='white'
-          >
-            <Box justifyContent='center' p={5}>
-              <Image
-                maxW='50px'
-                src={m.Poster}
-                fallbackSrc='http://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg'
-              />
-            </Box>
-            <Box width='100%' p={1}>
-              <Heading as='h3' size='sm'>{m.Title}</Heading>
-              <Badge borderRadius='full' px={2}>{m.Year}</Badge>
-            </Box>
-            <Spacer />
-            <Box flex={1} p={5}>
-              {renderNominationButton(m, nominations, updateNominations)}
-            </Box>
-          </Flex>
+          <>
+            <Flex
+              key={m.imdbID}
+              direction='row'
+              alignItems='center'
+              _hover={{ backgroundColor: 'gray.50' }}
+            >
+              <Box justifyContent='center' p={5}>
+                <Image
+                  maxW='50px'
+                  src={m.Poster}
+                  fallbackSrc='http://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg'
+                />
+              </Box>
+              <Box width='100%' p={1}>
+                <Heading as='h3' size='sm'>
+                  <Link href={`https://www.imdb.com/title/${m.imdbID}`} isExternal>
+                    {m.Title}
+                  </Link>
+                </Heading>
+                <Badge borderRadius='full' px={1}>{m.Year}</Badge>
+              </Box>
+              <Spacer />
+              <Box flex={1} p={5}>
+                {renderNominationButton(m, nominations, updateNominations)}
+              </Box>
+            </Flex>
+            <Divider borderColor='gray.400' />
+          </>
         )
       })}
     </Stack>
