@@ -8,10 +8,11 @@ import NominationList from '../components/NominationList'
 import ResultList from '../components/ResultList'
 import Search from '../components/Search'
 import { Movie } from '../types/SearchResult'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 const Home: React.FC = () => {
-  const [results, setResults] = React.useState([] as Movie[])
-  const [nominations, setNominations] = React.useState([] as Movie[])
+  const [results, setResults] = React.useState<Movie[]>([])
+  const [nominations, setNominations] = useLocalStorage<Movie[]>('nominations', [])
   const toast = useToast()
 
   const handleSetNominations = (m: Movie, action: 'add'|'remove') => {
