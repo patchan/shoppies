@@ -1,7 +1,7 @@
-import React from 'react'
-import { IconButton, Tooltip, useToast } from '@chakra-ui/react'
-import { Movie } from '../types/SearchResult'
-import { FiX } from 'react-icons/fi'
+import React from 'react';
+import { IconButton, Tooltip, useToast } from '@chakra-ui/react';
+import { Movie } from '../types/SearchResult';
+import { FiX } from 'react-icons/fi';
 
 interface RemoveButtonProps {
   movie: Movie;
@@ -9,16 +9,16 @@ interface RemoveButtonProps {
 }
 
 const RemoveButton: React.FC<RemoveButtonProps> = ({ movie, setNomination }) => {
-  const toast = useToast()
+  const toast = useToast();
   
   const handleOnClick = () => {
     setNomination(movie, 'remove');
     toast({
-      title: "Nomination removed",
+      title: 'Nomination removed',
       duration: 2000,
-      position: "top-right",
-    })
-  }
+      position: 'top-right',
+    });
+  };
 
   return (
     <Tooltip hasArrow label='Remove Nomination'>
@@ -31,7 +31,7 @@ const RemoveButton: React.FC<RemoveButtonProps> = ({ movie, setNomination }) => 
         isRound
       />
     </Tooltip>
-  )
-}
+  );
+};
 
-export default RemoveButton
+export default RemoveButton;
