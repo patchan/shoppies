@@ -1,13 +1,24 @@
-import * as React from 'react';
-import { Badge, Box, Divider, Flex, Heading, Image, Link, Select, Spacer, Stack } from '@chakra-ui/react';
+import React, { useContext, useState } from 'react';
+import {
+  Badge,
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Select,
+  Spacer,
+  Stack
+} from '@chakra-ui/react';
 import { Movie } from '../types/SearchResult';
 import NominateButton from './NominateButton';
 import { orderBy } from 'lodash';
+import { NominationsContext } from '../containers/Nominations';
 
 interface ResultsListProps {
   results: Movie[];
   updateNominations: (m: Movie, action: 'add'|'remove') => void;
-  nominations: Movie[];
 }
 
 const isNominated = (m: Movie, nominations: Movie[]) => {
@@ -19,18 +30,24 @@ const isNominated = (m: Movie, nominations: Movie[]) => {
   return false;
 };
 
-const renderNominationButton = (m: Movie, nominations: Movie[], updateNominations: (m: Movie, action: 'add'|'remove') => void) => {
+const renderNominationButton = (
+  m: Movie,
+  nominations: Movie[],
+  updateNominations: (m: Movie, action: 'add'|'remove') => void
+) => {
   if (isNominated(m, nominations) || nominations.length === 5) {
-    return <NominateButton movie={m} nominations={nominations} setNomination={updateNominations} isDisabled />;
+    return <NominateButton movie={m} setNomination={updateNominations} isDisabled />;
   }
-  return <NominateButton movie={m} nominations={nominations} setNomination={updateNominations} />;
+  return <NominateButton movie={m} setNomination={updateNominations} />;
 };
 
-const ResultList: React.FC<ResultsListProps> = ({ results, updateNominations, nominations }) => {
+const ResultList: React.FC<ResultsListProps> = ({ results, updateNominations }) => {
   const DEFAULT_SORT = 'Year';
   const DEFAULT_SORT_DIR = 'desc' as 'asc' | 'desc';
-  const [sortBy, setSortBy] = React.useState(DEFAULT_SORT);
-  const [sortDirection, setSortDirection] = React.useState(DEFAULT_SORT_DIR);
+  const [sortBy, setSortBy] = useState(DEFAULT_SORT);
+  const [sortDirection, setSortDirection] = useState(DEFAULT_SORT_DIR);
+
+  const nominations = useContext(NominationsContext);
 
   const handleSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value);
@@ -44,7 +61,7 @@ const ResultList: React.FC<ResultsListProps> = ({ results, updateNominations, no
     <Stack alignItems='stretch' w='100%'>
       <Box my={2}>
         <Stack direction='row' alignItems='center' spacing={2}>
-          <Select placeholder='Sort Order' onChange={handleSortBy}>
+          <Select placeholder='Sort By' onChange={handleSortBy}>
             <option value='Title'>Title</option>
             <option value='Year'>Year</option>
           </Select>

@@ -1,21 +1,34 @@
 import * as React from 'react';
-import { Alert, AlertIcon, AlertStatus, Badge, Box, Flex, Heading, Image, Link, Spacer, Stack, Text } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  AlertStatus,
+  Badge,
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Spacer,
+  Stack,
+  Text
+} from '@chakra-ui/react';
 import { Movie } from '../types/SearchResult';
 import RemoveButton from './RemoveButton';
 import { BOX_SHADOW } from './constants';
 
 interface NominationListProps {
-  movies: Movie[];
+  nominations: Movie[];
   updateNominations: (movie: Movie, action: 'add'|'remove') => void;
 }
 
-const renderAlert = (movies: Movie[]) => {
+const renderAlert = (nominations: Movie[]) => {
   let status: AlertStatus = 'info';
-  let message = `You can nominate ${5 - movies.length} more films for The Shoppies.`;
-  if (movies.length === 4) {
+  let message = `You can nominate ${5 - nominations.length} more films for The Shoppies.`;
+  if (nominations.length === 4) {
     message = 'You can nominate 1 more film for The Shoppies.';
   }
-  if (movies.length === 5) {
+  if (nominations.length === 5) {
     status = 'success';
     message = 'Nominations complete!';
   }
@@ -27,8 +40,8 @@ const renderAlert = (movies: Movie[]) => {
   );
 };
 
-const renderSkeleton = (movies: Movie[]) => {
-  if (movies.length === 0) {
+const renderSkeleton = (nominations: Movie[]) => {
+  if (nominations.length === 0) {
     return (
       <Flex
         backgroundColor='gray.100'
@@ -46,13 +59,13 @@ const renderSkeleton = (movies: Movie[]) => {
   return null;
 };
 
-const NominationList: React.FC<NominationListProps> = ({ movies, updateNominations }) => {
+const NominationList: React.FC<NominationListProps> = ({ nominations, updateNominations }) => {
   return (
     <Stack alignItems='stretch' w='100%'>
       <Heading size='md'>Nominations</Heading>
-      {renderAlert(movies)}
-      {renderSkeleton(movies)}
-      {movies.map((m: Movie) => {
+      {renderAlert(nominations)}
+      {renderSkeleton(nominations)}
+      {nominations.map((m: Movie) => {
         return (
           <Flex
             key={m.imdbID}

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IconButton, Tooltip, useToast } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
 import { Movie } from '../types/SearchResult';
+import { NominationsContext } from '../containers/Nominations';
 
 interface NominateButtonProps {
   movie: Movie;
-  nominations: Movie[];
   setNomination: (movie: Movie, action: 'add'|'remove') => void;
   isDisabled?: boolean;
 }
 
-const NominateButton: React.FC<NominateButtonProps> = ({ movie, nominations, setNomination, isDisabled }) => {
+const NominateButton: React.FC<NominateButtonProps> = ({ movie, setNomination, isDisabled }) => {
   const toast = useToast();
+  const nominations = useContext(NominationsContext);
 
   const handleOnClick = () => {
     setNomination(movie, 'add');
