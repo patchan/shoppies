@@ -8,7 +8,7 @@ import Nominations from './containers/Nominations';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box justifyContent='center' maxW='1200px'>
+    <Box justifyContent='center' maxW='1200px' margin='auto'>
       <Nominations />
     </Box>
   </ChakraProvider>
