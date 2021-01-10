@@ -12,6 +12,7 @@
   "rules": {
     "arrow-parens": ["error", "always"],
     "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }

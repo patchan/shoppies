@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Box,
   Container,
   Heading,
   VStack
@@ -36,6 +37,7 @@ const Nominations: React.FC = () => {
         <NominationsContext.Provider value={nominations}>
           {results.length > 0 && <ResultList results={results} updateNominations={handleSetNominations} />}
         </NominationsContext.Provider>
+        <Box p={2} />
       </VStack>
     </Container>
   );
