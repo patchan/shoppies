@@ -4,7 +4,7 @@ Shopify Front-End Developer Intern Challenge - Summer 2021.
 
 Hosted on netlify at [The Shoppies](https://reverent-franklin-82ca04.netlify.app/).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/573224c5-5b97-4762-af91-eb127a4c0694/deploy-status)](https://app.netlify.com/sites/reverent-franklin-82ca04/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/573224c5-5b97-4762-af91-eb127a4c0694/deploy-status)](https://reverent-franklin-82ca04.netlify.app)
 
 ## Core Requirements:
 
