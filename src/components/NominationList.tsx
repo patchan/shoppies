@@ -68,7 +68,7 @@ const NominationList: React.FC<NominationListProps> = ({ movies, updateNominatio
               <Image
                 maxW='50px'
                 src={m.Poster}
-                fallbackSrc='/placeholder'
+                fallbackSrc='/placeholder.png'
               />
             </Box>
             <Box width='100%' p={1}>

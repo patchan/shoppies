@@ -67,7 +67,7 @@ const ResultList: React.FC<ResultsListProps> = ({ results, updateNominations, no
                 <Image
                   maxW='50px'
                   src={m.Poster}
-                  fallbackSrc='http://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg'
+                  fallbackSrc='/placeholder.png'
                 />
               </Box>
               <Box width='100%' p={1}>
