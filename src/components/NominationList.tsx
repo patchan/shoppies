@@ -73,6 +73,7 @@ const NominationList: React.FC<NominationListProps> = ({ nominations, updateNomi
             alignItems='center'
             borderRadius={8}
             boxShadow={BOX_SHADOW}
+            minH='110px'
             my={2}
             background='white'
             _hover={{ backgroundColor: 'gray.50' }}
