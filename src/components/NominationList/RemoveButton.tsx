@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton, Tooltip, useToast } from '@chakra-ui/react';
-import { Movie } from '../types/SearchResult';
+import { Movie } from '../../types/SearchResult';
 import { FiX } from 'react-icons/fi';
 
 interface RemoveButtonProps {

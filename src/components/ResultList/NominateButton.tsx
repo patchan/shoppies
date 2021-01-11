@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { IconButton, Tooltip, useToast } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
-import { Movie } from '../types/SearchResult';
-import { NominationsContext } from '../containers/Nominations';
+import { Movie } from '../../types/SearchResult';
+import { NominationsContext } from '../../containers/Nominations';
 
 interface NominateButtonProps {
   movie: Movie;

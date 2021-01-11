@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Container,
-  Heading,
-  VStack
-} from '@chakra-ui/react';
-import NominationList from '../components/NominationList';
-import ResultList from '../components/ResultList';
+import { Box, Container, Heading, VStack } from '@chakra-ui/react';
+import NominationList from '../components/NominationList/NominationList';
+import ResultList from '../components/ResultList/ResultList';
 import Search from '../components/Search';
 import { Movie } from '../types/SearchResult';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -35,7 +30,9 @@ const Nominations: React.FC = () => {
         <NominationList nominations={nominations} updateNominations={handleSetNominations} />
         <Search setResults={setResults} />
         <NominationsContext.Provider value={nominations}>
-          {results.length > 0 && <ResultList results={results} updateNominations={handleSetNominations} />}
+          {results.length > 0 &&
+            <ResultList results={results} updateNominations={handleSetNominations} />
+          }
         </NominationsContext.Provider>
         <Box p={2} />
       </VStack>

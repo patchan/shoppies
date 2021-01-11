@@ -3,19 +3,14 @@ import {
   Alert,
   AlertIcon,
   AlertStatus,
-  Badge,
-  Box,
   Flex,
   Heading,
-  Image,
-  Link,
-  Spacer,
   Stack,
   Text
 } from '@chakra-ui/react';
-import { Movie } from '../types/SearchResult';
-import RemoveButton from './RemoveButton';
-import { BOX_SHADOW } from './constants';
+import { Movie } from '../../types/SearchResult';
+import { BOX_SHADOW } from '../constants';
+import Nomination from './Nomination';
 
 interface NominationListProps {
   nominations: Movie[];
@@ -66,39 +61,7 @@ const NominationList: React.FC<NominationListProps> = ({ nominations, updateNomi
       {renderAlert(nominations)}
       {renderSkeleton(nominations)}
       {nominations.map((m: Movie) => {
-        return (
-          <Flex
-            key={m.imdbID}
-            direction='row'
-            alignItems='center'
-            borderRadius={8}
-            boxShadow={BOX_SHADOW}
-            minH='110px'
-            my={2}
-            background='white'
-            _hover={{ backgroundColor: 'gray.50' }}
-          >
-            <Box justifyContent='center' p={5}>
-              <Image
-                maxW='50px'
-                src={m.Poster}
-                fallbackSrc='/placeholder.png'
-              />
-            </Box>
-            <Box width='100%' p={1}>
-              <Heading as='h3' size='sm'>
-                <Link href={`https://www.imdb.com/title/${m.imdbID}`} isExternal>
-                  {m.Title}
-                </Link>
-              </Heading>
-              <Badge borderRadius='full' px={1}>{m.Year}</Badge>
-            </Box>
-            <Spacer />
-            <Box flex={1} p={5}>
-              <RemoveButton movie={m} setNomination={updateNominations} />
-            </Box>
-          </Flex>
-        );
+        return (<Nomination movie={m} setNomination={updateNominations} />);
       })}
     </Stack>
   );
